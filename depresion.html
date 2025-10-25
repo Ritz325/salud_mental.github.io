@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depresión - Información y Recursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #000000;
+            color: #e6e6e6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #000000 50%);
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .nebula {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(30, 58, 138, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(55, 48, 163, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: nebulaPulse 15s infinite alternate;
+        }
+
+        @keyframes nebulaPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        header {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 13px;
+            letter-spacing: 10px;
+            border: 2px solid #e6e6e6;
+            padding: 12px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: #e6e6e6;
+            display: inline-block;
+        }
+
+        .logo:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            border-color: #64b5f6;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            color: #64b5f6;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.8);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 50px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 58, 138, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulseGlow 8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            font-weight: 300;
+            letter-spacing: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #3730a3, #64b5f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(100, 181, 246, 0.3);
+            animation: fadeInTitle 2s ease-out;
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #64b5f6, transparent);
+            margin: 0 auto 30px;
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-box {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s;
+        }
+
+        .info-box:hover {
+            border-color: rgba(100, 181, 246, 0.5);
+            box-shadow: 0 0 60px rgba(100, 181, 246, 0.2);
+        }
+
+        .info-box h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #64b5f6;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+        }
+
+        .info-box p {
+            line-height: 2;
+            font-size: 15px;
+            color: #b0b0b0;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .symptom-card {
+            background: rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(100, 181, 246, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .symptom-card:hover {
+            background: rgba(30, 58, 138, 0.2);
+            border-color: rgba(100, 181, 246, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .symptom-card h3 {
+            font-size: 1.2em;
+            color: #64b5f6;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .symptom-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #909090;
+        }
+
+        .specialist-section {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.15), rgba(55, 48, 163, 0.15));
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+        }
+
+        .specialist-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #64b5f6;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(100, 181, 246, 0.1);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(100, 181, 246, 0.4);
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            font-size: 3em;
+            color: #3730a3;
+            font-weight: 300;
+            text-shadow: 0 0 30px rgba(55, 48, 163, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 1.3em;
+            color: #e6e6e6;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .step p {
+            color: #909090;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .music-section {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+        }
+
+        .music-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            color: #64b5f6;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+        }
+
+        .music-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 2;
+            color: #b0b0b0;
+            font-size: 15px;
+        }
+
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .song-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.15), rgba(55, 48, 163, 0.1));
+            border: 1px solid rgba(100, 181, 246, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-card::before {
+            content: '♪';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3em;
+            opacity: 0.1;
+            color: #64b5f6;
+        }
+
+        .song-card:hover {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(55, 48, 163, 0.2));
+            border-color: rgba(100, 181, 246, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(100, 181, 246, 0.3);
+        }
+
+        .song-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3730a3, #1e3a8a);
+            color: #e6e6e6;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .song-link:hover {
+            background: linear-gradient(135deg, #4c1d95, #3730a3);
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.6);
+            border-color: rgba(100, 181, 246, 0.8);
+            transform: scale(1.05);
+        }
+
+        .song-link::before {
+            content: '▶ ';
+            margin-right: 5px;
+        }
+
+        .song-card h3 {
+            font-size: 1.4em;
+            color: #64b5f6;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .song-artist {
+            color: #909090;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .song-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .help-banner {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(190, 18, 60, 0.2));
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .help-banner h3 {
+            font-size: 2em;
+            color: #fca5a5;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(252, 165, 165, 0.5);
+        }
+
+        .help-banner p {
+            font-size: 1.2em;
+            color: #e6e6e6;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .help-number {
+            font-size: 2.5em;
+            color: #fca5a5;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin-top: 20px;
+            text-shadow: 0 0 30px rgba(252, 165, 165, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: #606060;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+                letter-spacing: 10px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .info-box, .specialist-section, .music-section {
+                padding: 30px 25px;
+            }
+
+            .symptoms-grid, .songs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <header>
+        <a href="#" class="logo">MENTE SANA</a>
+        <nav>
+            <a href="index1.html">Inicio</a>
+            <a href="#informacion">Información</a>
+            <a href="#especialista">Especialista</a>
+            <a href="#musica">Música</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <h1>DEPRESIÓN</h1>
+        <div class="divider"></div>
+    </section>
+
+    <div class="content-section">
+        <div class="info-box" id="informacion">
+            <h2>¿QUÉ ES LA DEPRESIÓN?</h2>
+            <p>
+                La depresión es un trastorno del estado de ánimo que va mucho más allá de sentirse triste ocasionalmente. 
+                Es una condición médica seria que afecta cómo te sientes, piensas y manejas las actividades diarias. 
+                La depresión clínica, también conocida como trastorno depresivo mayor, causa síntomas persistentes que 
+                interfieren con tu capacidad para trabajar, estudiar, dormir, comer y disfrutar de actividades que 
+                alguna vez fueron placenteras.
+            </p>
+            <p>
+                Es importante entender que la depresión no es una debilidad ni algo de lo que simplemente puedas "salir". 
+                Es una condición médica legítima que requiere tratamiento profesional. Con el apoyo adecuado, la mayoría 
+                de las personas con depresión pueden mejorar significativamente y recuperar su calidad de vida.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h2>SÍNTOMAS PRINCIPALES</h2>
+            <p>
+                La depresión se manifiesta de diferentes formas en cada persona. Los síntomas pueden variar en 
+                intensidad y duración, pero generalmente incluyen:
+            </p>
+            
+            <div class="symptoms-grid">
+                <div class="symptom-card">
+                    <h3>Estado de Ánimo Bajo</h3>
+                    <p>Sentimientos persistentes de tristeza, vacío o desesperanza que duran la mayor parte del día.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Pérdida de Interés</h3>
+                    <p>Desinterés en actividades que antes disfrutabas, incluyendo hobbies, socialización o intimidad.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Cambios en el Sueño</h3>
+                    <p>Insomnio o dormir demasiado, dificultad para descansar adecuadamente.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Fatiga Constante</h3>
+                    <p>Sensación de cansancio extremo y falta de energía, incluso para tareas simples.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Cambios de Apetito</h3>
+                    <p>Pérdida o aumento significativo del apetito y peso sin intentarlo.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Dificultad de Concentración</h3>
+                    <p>Problemas para pensar con claridad, tomar decisiones o recordar cosas.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Sentimientos de Culpa</h3>
+                    <p>Autocrítica excesiva, sentimientos de inutilidad o culpa inapropiada.</p>
+                </div>
+                
+                <div class="symptom-card">
+                    <h3>Pensamientos Negativos</h3>
+                    <p>Pensamientos recurrentes sobre la muerte o ideación suicida.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="specialist-section" id="especialista">
+            <h2>CÓMO CONSULTAR CON UN ESPECIALISTA</h2>
+            <div class="divider"></div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>RECONOCE LOS SÍNTOMAS</h3>
+                    <p>El primer paso es reconocer que necesitas ayuda. Si experimentas varios síntomas durante más de dos semanas, es momento de buscar apoyo profesional.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>CONTACTA A TU EPS</h3>
+                    <p>Llama a tu EPS para solicitar una cita con psicología o psiquiatría. Tienen la obligación de brindarte atención en salud mental.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>MÉDICO GENERAL</h3>
+                    <p>También puedes comenzar con tu médico de cabecera, quien puede hacer una evaluación inicial y referirte a un especialista si es necesario.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3>PREPARA TU CONSULTA</h3>
+                    <p>Anota tus síntomas, cuándo comenzaron, cómo afectan tu vida diaria y cualquier pregunta que tengas para el especialista.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <h3>SÉ HONESTO</h3>
+                    <p>Durante la consulta, sé completamente honesto sobre tus sentimientos y síntomas. No hay vergüenza en buscar ayuda.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">06</div>
+                    <h3>SIGUE EL TRATAMIENTO</h3>
+                    <p>El tratamiento puede incluir terapia, medicación o ambos. Es fundamental seguir las indicaciones y asistir a todas las citas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-section" id="musica">
+            <h2>MÚSICA PARA EL BIENESTAR</h2>
+            <div class="divider"></div>
+            <p class="music-intro">
+                La música puede ser una herramienta poderosa para mejorar el estado de ánimo y aliviar síntomas de 
+                tristeza y desánimo. Estas canciones han sido seleccionadas por su capacidad para elevar el espíritu, 
+                proporcionar consuelo y crear un ambiente positivo. Recuerda que la música es un complemento, no un 
+                reemplazo del tratamiento profesional.
+            </p>
+            
+            <div class="songs-grid">
+                <div class="song-card">
+                    <h3>Here Comes The Sun</h3>
+                    <p class="song-artist">The Beatles</p>
+                    <p class="song-description">Una melodía optimista que celebra la esperanza y los nuevos comienzos. Su mensaje simple pero poderoso puede ayudar a recordar que los días difíciles pasan.</p>
+                    <a href="https://www.youtube.com/watch?v=KQetemT1sWc" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Three Little Birds</h3>
+                    <p class="song-artist">Bob Marley</p>
+                    <p class="song-description">Con su mensaje de que "todo va a estar bien", esta canción transmite paz y confianza. Su ritmo relajado puede ayudar a reducir la ansiedad.</p>
+                    <a href="https://www.youtube.com/watch?v=zaGUr6wzyT8" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Good Vibrations</h3>
+                    <p class="song-artist">The Beach Boys</p>
+                    <p class="song-description">Una pieza llena de energía positiva y alegría. Sus armonías complejas y melodía alegre pueden elevar el ánimo instantáneamente.</p>
+                    <a href="https://www.youtube.com/watch?v=Eab_beh07HU" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Don't Stop Me Now</h3>
+                    <p class="song-artist">Queen</p>
+                    <p class="song-description">Una explosión de energía y positividad. Esta canción puede motivarte y recordarte tu propia fortaleza interior.</p>
+                    <a href="https://www.youtube.com/watch?v=HgzGwKwLmgM" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Beautiful Day</h3>
+                    <p class="song-artist">U2</p>
+                    <p class="song-description">Un himno sobre encontrar belleza incluso en momentos difíciles. Inspiradora y edificante, perfecta para comenzar el día.</p>
+                    <a href="https://www.youtube.com/watch?v=co6WMzDOh1o" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Happy</h3>
+                    <p class="song-artist">Pharrell Williams</p>
+                    <p class="song-description">Imposible no sentirse mejor con esta canción. Su ritmo contagioso y letra positiva están diseñados para mejorar el estado de ánimo.</p>
+                    <a href="https://www.youtube.com/watch?v=ZbZSe6N_BXs" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Walking On Sunshine</h3>
+                    <p class="song-artist">Katrina and The Waves</p>
+                    <p class="song-description">Pura energía positiva y alegría. Esta canción puede ayudarte a sentirte más animado y con ganas de moverte.</p>
+                    <a href="https://www.youtube.com/watch?v=iPUmE-tne5U" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Lovely Day</h3>
+                    <p class="song-artist">Bill Withers</p>
+                    <p class="song-description">Una melodía suave y reconfortante que celebra las pequeñas alegrías. Perfecta para momentos de reflexión tranquila.</p>
+                    <a href="https://www.youtube.com/watch?v=bEeaS6fuUoA" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>I Can See Clearly Now</h3>
+                    <p class="song-artist">Johnny Nash</p>
+                    <p class="song-description">Sobre superar obstáculos y ver un futuro brillante. Un recordatorio de que las dificultades son temporales.</p>
+                    <a href="https://www.youtube.com/watch?v=MrHxhQPOO2c" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-banner">
+            <h3>¿NECESITAS AYUDA INMEDIATA?</h3>
+            <p>Si estás experimentando pensamientos suicidas o una crisis emocional, no estás solo.</p>
+            <p>Contacta inmediatamente:</p>
+            <div class="help-number">LÍNEA 123</div>
+            <p style="margin-top: 20px;">O acude a la sala de emergencias más cercana</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="divider"></div>
+        © 2025 PORTAL DE SALUD MENTAL | TU BIENESTAR ES NUESTRA PRIORIDAD
+    </footer>
+
+    <script>
+        // Generar estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Efecto parallax
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 15;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 15;
+        });
+
+        function animate() {
+            currentX += (mouseX - currentX) * 0.05;
+            currentY += (mouseY - currentY) * 0.05;
+
+            const cards = document.querySelectorAll('.symptom-card, .song-card, .step');
+            cards.forEach((card, index) => {
+                const depth = (index % 3 + 1) * 0.3;
+                card.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Animación de entrada para elementos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 80);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.symptom-card, .song-card, .step, .info-box').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(element);
+        });
+
+        // Efecto de resplandor que sigue al cursor
+        const heroGlow = document.querySelector('.hero-glow');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth * 100;
+            const y = e.clientY / window.innerHeight * 100;
+            heroGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(30, 58, 138, 0.25) 0%, transparent 50%)`;
+        });
+
+        // Scroll suave para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });

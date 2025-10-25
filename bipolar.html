@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trastorno Bipolar - Información y Recursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #000000;
+            color: #e6e6e6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #000000 50%);
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .nebula {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(14, 116, 144, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(8, 145, 178, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: nebulaPulse 15s infinite alternate;
+        }
+
+        @keyframes nebulaPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        header {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 13px;
+            letter-spacing: 10px;
+            border: 2px solid #e6e6e6;
+            padding: 12px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: #e6e6e6;
+            display: inline-block;
+        }
+
+        .logo:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            border-color: #22d3ee;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            color: #22d3ee;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 50px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 116, 144, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulseGlow 8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 300;
+            letter-spacing: 18px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #0e7490, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
+            animation: fadeInTitle 2s ease-out;
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+            margin: 0 auto 30px;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-box {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s;
+        }
+
+        .info-box:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 0 60px rgba(34, 211, 238, 0.2);
+        }
+
+        .info-box h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #22d3ee;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .info-box p {
+            line-height: 2;
+            font-size: 15px;
+            color: #b0b0b0;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .type-card {
+            background: rgba(14, 116, 144, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .type-card:hover {
+            background: rgba(14, 116, 144, 0.2);
+            border-color: rgba(34, 211, 238, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .type-card h3 {
+            font-size: 1.3em;
+            color: #22d3ee;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .type-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #909090;
+        }
+
+        .episodes-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .episode-box {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s;
+        }
+
+        .episode-box:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .episode-box h3 {
+            font-size: 2em;
+            color: #22d3ee;
+            margin-bottom: 25px;
+            letter-spacing: 5px;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .episode-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .episode-box li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .episode-box li:last-child {
+            border-bottom: none;
+        }
+
+        .episode-box li::before {
+            content: '▸ ';
+            color: #22d3ee;
+            margin-right: 10px;
+        }
+
+        .specialist-section {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.15), rgba(8, 145, 178, 0.15));
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+        }
+
+        .specialist-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #22d3ee;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(34, 211, 238, 0.1);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(34, 211, 238, 0.4);
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            font-size: 3em;
+            color: #0e7490;
+            font-weight: 300;
+            text-shadow: 0 0 30px rgba(14, 116, 144, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 1.3em;
+            color: #e6e6e6;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .step p {
+            color: #909090;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .music-section {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+        }
+
+        .music-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            color: #22d3ee;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .music-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 2;
+            color: #b0b0b0;
+            font-size: 15px;
+        }
+
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .song-card {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.15), rgba(8, 145, 178, 0.1));
+            border: 1px solid rgba(34, 211, 238, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-card::before {
+            content: '♪';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3em;
+            opacity: 0.1;
+            color: #22d3ee;
+        }
+
+        .song-card:hover {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.25), rgba(8, 145, 178, 0.2));
+            border-color: rgba(34, 211, 238, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(34, 211, 238, 0.3);
+        }
+
+        .song-card h3 {
+            font-size: 1.4em;
+            color: #22d3ee;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .song-artist {
+            color: #909090;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .song-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .song-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #0e7490, #0891b2);
+            color: #e6e6e6;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .song-link:hover {
+            background: linear-gradient(135deg, #155e75, #0e7490);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+            border-color: rgba(34, 211, 238, 0.8);
+            transform: scale(1.05);
+        }
+
+        .song-link::before {
+            content: '▶ ';
+            margin-right: 5px;
+        }
+
+        .help-banner {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(190, 18, 60, 0.2));
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .help-banner h3 {
+            font-size: 2em;
+            color: #fca5a5;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(252, 165, 165, 0.5);
+        }
+
+        .help-banner p {
+            font-size: 1.2em;
+            color: #e6e6e6;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .help-number {
+            font-size: 2.5em;
+            color: #fca5a5;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin-top: 20px;
+            text-shadow: 0 0 30px rgba(252, 165, 165, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: #606060;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+                letter-spacing: 8px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .info-box, .specialist-section, .music-section {
+                padding: 30px 25px;
+            }
+
+            .songs-grid, .types-grid, .episodes-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <header>
+        <a href="#" class="logo">MENTE SANA</a>
+        <nav>
+            <a href="index1.html">Inicio</a>
+            <a href="#informacion">Información</a>
+            <a href="#especialista">Especialista</a>
+            <a href="#musica">Música</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <h1>TRASTORNO BIPOLAR</h1>
+        <div class="divider"></div>
+    </section>
+
+    <div class="content-section">
+        <div class="info-box" id="informacion">
+            <h2>¿QUÉ ES EL TRASTORNO BIPOLAR?</h2>
+            <p>
+                El trastorno bipolar, anteriormente conocido como enfermedad maníaco-depresiva, es una condición de 
+                salud mental caracterizada por cambios extremos en el estado de ánimo, la energía y la capacidad para 
+                funcionar. Estos cambios incluyen episodios emocionales de "altos" (manía o hipomanía) y "bajos" (depresión).
+            </p>
+            <p>
+                Durante un episodio maníaco, una persona puede sentirse eufórica, llena de energía o inusualmente irritable. 
+                Durante un episodio depresivo, puede sentirse triste, sin esperanza o perder el interés en la mayoría de 
+                las actividades. Entre estos episodios, muchas personas experimentan períodos de estado de ánimo normal, 
+                conocidos como eutimia.
+            </p>
+            <p>
+                El trastorno bipolar es una condición de por vida, pero con tratamiento adecuado, las personas pueden 
+                manejar efectivamente sus cambios de humor y otros síntomas. El tratamiento generalmente incluye una 
+                combinación de medicación y psicoterapia.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h2>TIPOS DE TRASTORNO BIPOLAR</h2>
+            <p>
+                Existen varios tipos de trastorno bipolar, cada uno definido por el patrón de episodios:
+            </p>
+            
+            <div class="types-grid">
+                <div class="type-card">
+                    <h3>Trastorno Bipolar I</h3>
+                    <p>Caracterizado por episodios maníacos que duran al menos 7 días o síntomas maníacos tan graves que se necesita atención hospitalaria inmediata. También ocurren episodios depresivos, típicamente durando al menos 2 semanas.</p>
+                </div>
+                
+                <div class="type-card">
+                    <h3>Trastorno Bipolar II</h3>
+                    <p>Definido por un patrón de episodios depresivos y episodios hipomaníacos (menos intensos que la manía), pero no episodios maníacos completos. No es una forma "más leve" del Bipolar I.</p>
+                </div>
+                
+                <div class="type-card">
+                    <h3>Trastorno Ciclotímico</h3>
+                    <p>Períodos de síntomas hipomaníacos y síntomas depresivos que duran al menos 2 años (1 año en niños y adolescentes), pero los síntomas no cumplen los criterios para episodios completos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>EPISODIOS DEL ESTADO DE ÁNIMO</h2>
+            <p>
+                El trastorno bipolar se caracteriza por episodios distintos de cambios en el estado de ánimo:
+            </p>
+            
+            <div class="episodes-section">
+                <div class="episode-box">
+                    <h3>EPISODIO MANÍACO</h3>
+                    <ul>
+                        <li>Estado de ánimo elevado, eufórico o extremadamente irritable</li>
+                        <li>Aumento de energía, actividad o agitación</li>
+                        <li>Disminución de la necesidad de dormir</li>
+                        <li>Hablar más de lo usual o sentir presión para seguir hablando</li>
+                        <li>Pensamientos acelerados o fuga de ideas</li>
+                        <li>Distracción fácil</li>
+                        <li>Aumento de autoestima o grandiosidad</li>
+                        <li>Participación en actividades placenteras pero riesgosas</li>
+                        <li>Comportamiento impulsivo o decisiones precipitadas</li>
+                    </ul>
+                </div>
+                
+                <div class="episode-box">
+                    <h3>EPISODIO DEPRESIVO</h3>
+                    <ul>
+                        <li>Estado de ánimo deprimido o sensación de vacío</li>
+                        <li>Pérdida de interés en casi todas las actividades</li>
+                        <li>Cambios significativos en peso o apetito</li>
+                        <li>Insomnio o dormir demasiado</li>
+                        <li>Agitación o lentitud psicomotora</li>
+                        <li>Fatiga o pérdida de energía</li>
+                        <li>Sentimientos de inutilidad o culpa excesiva</li>
+                        <li>Dificultad para concentrarse o tomar decisiones</li>
+                        <li>Pensamientos recurrentes sobre la muerte</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="specialist-section" id="especialista">
+            <h2>CÓMO CONSULTAR CON UN ESPECIALISTA</h2>
+            <div class="divider"></div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>RECONOCE LOS PATRONES</h3>
+                    <p>Identifica si experimentas cambios extremos en el estado de ánimo, energía o comportamiento. Lleva un registro de tus estados de ánimo.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>BUSCA EVALUACIÓN PROFESIONAL</h3>
+                    <p>El trastorno bipolar requiere diagnóstico por un psiquiatra. Contacta tu EPS para solicitar cita con psiquiatría específicamente.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>PREPARA TU HISTORIAL</h3>
+                    <p>Documenta episodios previos, historia familiar de trastornos del ánimo, y cualquier medicamento o sustancia que uses.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3>SÉ COMPLETAMENTE HONESTO</h3>
+                    <p>Describe todos tus síntomas, tanto los "altos" como los "bajos". Muchas personas solo reportan la depresión, lo que puede llevar a diagnóstico incorrecto.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <h3>INVOLUCRA A TU RED DE APOYO</h3>
+                    <p>Si es posible, lleva a alguien cercano a la consulta. Pueden proporcionar perspectiva sobre cambios que tú no notes.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">06</div>
+                    <h3>COMPROMISO CON EL TRATAMIENTO</h3>
+                    <p>El trastorno bipolar requiere tratamiento continuo. Sigue el plan de medicación y terapia consistentemente, incluso cuando te sientas bien.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-section" id="musica">
+            <h2>MÚSICA PARA EL EQUILIBRIO</h2>
+            <div class="divider"></div>
+            <p class="music-intro">
+                La música puede ser una herramienta valiosa para ayudar a estabilizar el estado de ánimo. Estas 
+                canciones han sido seleccionadas por sus cualidades equilibradoras: ni demasiado estimulantes ni 
+                excesivamente melancólicas. Pueden ayudar a crear un espacio emocional neutro y promover la estabilidad. 
+                Úsalas como parte de tu rutina de autocuidado y manejo del estado de ánimo.
+            </p>
+            
+            <div class="songs-grid">
+                <div class="song-card">
+                    <h3>Aqueous Transmission</h3>
+                    <p class="song-artist">Incubus</p>
+                    <p class="song-description">Una pieza instrumental serena y contemplativa que ayuda a encontrar el centro emocional. Perfecta para momentos de transición.</p>
+                    <a href="https://www.youtube.com/watch?v=eQK7KSTQfaw" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Holocene</h3>
+                    <p class="song-artist">Bon Iver</p>
+                    <p class="song-description">Melodía suave y reflexiva que fomenta la introspección tranquila sin caer en la melancolía profunda.</p>
+                    <a href="https://www.youtube.com/watch?v=TWcyIpul8OE" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Teardrop</h3>
+                    <p class="song-artist">Massive Attack</p>
+                    <p class="song-description">Ritmo constante y hipnótico que proporciona una sensación de estabilidad y equilibrio emocional.</p>
+                    <a href="https://www.youtube.com/watch?v=u7K72X4eo_s" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>The District Sleeps Alone Tonight</h3>
+                    <p class="song-artist">The Postal Service</p>
+                    <p class="song-description">Combina elementos electrónicos con melodía melódica, creando un balance entre energía y calma.</p>
+                    <a href="https://www.youtube.com/watch?v=xUIBnmdJJ50" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Bloom</h3>
+                    <p class="song-artist">Radiohead</p>
+                    <p class="song-description">Textura sonora equilibrada que ayuda a mantener un estado mental estable y presente.</p>
+                    <a href="https://www.youtube.com/watch?v=D2084nQbmvk" target="_blank" class="song-link">ESCUCHAR</a>

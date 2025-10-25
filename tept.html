@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEPT - Información y Recursos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #000000;
+            color: #e6e6e6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #000000 50%);
+            z-index: 0;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .nebula {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(30, 41, 59, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(51, 65, 85, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: nebulaPulse 15s infinite alternate;
+        }
+
+        @keyframes nebulaPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        header {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 13px;
+            letter-spacing: 10px;
+            border: 2px solid #e6e6e6;
+            padding: 12px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: #e6e6e6;
+            display: inline-block;
+        }
+
+        .logo:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            border-color: #94a3b8;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            color: #94a3b8;
+            text-shadow: 0 0 20px rgba(148, 163, 184, 0.8);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 50px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(51, 65, 85, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulseGlow 8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 5em;
+            font-weight: 300;
+            letter-spacing: 25px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #334155, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(148, 163, 184, 0.3);
+            animation: fadeInTitle 2s ease-out;
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .divider {
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #94a3b8, transparent);
+            margin: 0 auto 30px;
+            box-shadow: 0 0 20px rgba(148, 163, 184, 0.5);
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-box {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s;
+        }
+
+        .info-box:hover {
+            border-color: rgba(148, 163, 184, 0.5);
+            box-shadow: 0 0 60px rgba(148, 163, 184, 0.2);
+        }
+
+        .info-box h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #94a3b8;
+            text-shadow: 0 0 20px rgba(148, 163, 184, 0.5);
+        }
+
+        .info-box p {
+            line-height: 2;
+            font-size: 15px;
+            color: #b0b0b0;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .trauma-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .trauma-card {
+            background: rgba(51, 65, 85, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .trauma-card:hover {
+            background: rgba(51, 65, 85, 0.2);
+            border-color: rgba(148, 163, 184, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .trauma-card h3 {
+            font-size: 1.2em;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .trauma-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #909090;
+        }
+
+        .symptoms-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .symptom-category {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+            transition: all 0.5s;
+        }
+
+        .symptom-category:hover {
+            border-color: rgba(148, 163, 184, 0.5);
+            box-shadow: 0 0 40px rgba(148, 163, 184, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .symptom-category h3 {
+            font-size: 1.6em;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(148, 163, 184, 0.5);
+        }
+
+        .symptom-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .symptom-category li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .symptom-category li:last-child {
+            border-bottom: none;
+        }
+
+        .symptom-category li::before {
+            content: '→ ';
+            color: #94a3b8;
+            margin-right: 8px;
+        }
+
+        .specialist-section {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.15), rgba(51, 65, 85, 0.15));
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 15px;
+            padding: 50px;
+            margin-bottom: 50px;
+        }
+
+        .specialist-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            color: #94a3b8;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(148, 163, 184, 0.5);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(148, 163, 184, 0.4);
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            font-size: 3em;
+            color: #334155;
+            font-weight: 300;
+            text-shadow: 0 0 30px rgba(51, 65, 85, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 1.3em;
+            color: #e6e6e6;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .step p {
+            color: #909090;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .music-section {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+        }
+
+        .music-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            color: #94a3b8;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(148, 163, 184, 0.5);
+        }
+
+        .music-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 2;
+            color: #b0b0b0;
+            font-size: 15px;
+        }
+
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .song-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.15), rgba(51, 65, 85, 0.1));
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-card::before {
+            content: '♪';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3em;
+            opacity: 0.1;
+            color: #94a3b8;
+        }
+
+        .song-card:hover {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.25), rgba(51, 65, 85, 0.2));
+            border-color: rgba(148, 163, 184, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(148, 163, 184, 0.3);
+        }
+
+        .song-card h3 {
+            font-size: 1.4em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .song-artist {
+            color: #909090;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .song-description {
+            color: #b0b0b0;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .song-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #334155, #475569);
+            color: #e6e6e6;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .song-link:hover {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            box-shadow: 0 0 20px rgba(148, 163, 184, 0.6);
+            border-color: rgba(148, 163, 184, 0.8);
+            transform: scale(1.05);
+        }
+
+        .song-link::before {
+            content: '▶ ';
+            margin-right: 5px;
+        }
+
+        .help-banner {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(190, 18, 60, 0.2));
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .help-banner h3 {
+            font-size: 2em;
+            color: #fca5a5;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(252, 165, 165, 0.5);
+        }
+
+        .help-banner p {
+            font-size: 1.2em;
+            color: #e6e6e6;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .help-number {
+            font-size: 2.5em;
+            color: #fca5a5;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin-top: 20px;
+            text-shadow: 0 0 30px rgba(252, 165, 165, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: #606060;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+                letter-spacing: 12px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 25px;
+                padding: 25px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .info-box, .specialist-section, .music-section {
+                padding: 30px 25px;
+            }
+
+            .trauma-types, .songs-grid, .symptoms-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="nebula"></div>
+
+    <header>
+        <a href="#" class="logo">MENTE SANA</a>
+        <nav>
+            <a href="index1.html">Inicio</a>
+            <a href="#informacion">Información</a>
+            <a href="#especialista">Especialista</a>
+            <a href="#musica">Música</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <h1>TEPT</h1>
+        <div class="divider"></div>
+    </section>
+
+    <div class="content-section">
+        <div class="info-box" id="informacion">
+            <h2>¿QUÉ ES EL TEPT?</h2>
+            <p>
+                El Trastorno de Estrés Postraumático (TEPT) es una condición de salud mental que puede desarrollarse 
+                después de experimentar o presenciar un evento traumático. Estos eventos pueden incluir guerra, 
+                desastres naturales, accidentes graves, asaltos, abuso, o cualquier situación que haya amenazado la 
+                vida o seguridad de una persona.
+            </p>
+            <p>
+                Es importante entender que el TEPT no es una señal de debilidad. Es una respuesta normal del cuerpo 
+                y la mente a un evento anormal y extremadamente estresante. El trauma afecta el sistema nervioso y 
+                la forma en que el cerebro procesa los recuerdos y las emociones. Algunas personas se recuperan 
+                naturalmente con el tiempo, mientras que otras desarrollan síntomas que persisten y requieren 
+                tratamiento profesional.
+            </p>
+            <p>
+                No todas las personas que experimentan un trauma desarrollan TEPT. Los síntomas generalmente comienzan 
+                dentro de los tres meses posteriores al evento, pero a veces pueden aparecer años después. Con tratamiento 
+                especializado, que puede incluir terapias como EMDR (Desensibilización y Reprocesamiento por Movimientos 
+                Oculares) o terapia cognitivo-conductual centrada en el trauma, la recuperación es posible.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h2>TIPOS DE EVENTOS TRAUMÁTICOS</h2>
+            <p>
+                El TEPT puede desarrollarse después de diversos tipos de experiencias traumáticas:
+            </p>
+            
+            <div class="trauma-types">
+                <div class="trauma-card">
+                    <h3>Violencia Interpersonal</h3>
+                    <p>Asalto físico o sexual, abuso doméstico, secuestro, acoso severo o amenazas de muerte.</p>
+                </div>
+                
+                <div class="trauma-card">
+                    <h3>Accidentes Graves</h3>
+                    <p>Accidentes automovilísticos, laborales o industriales que amenazaron la vida o causaron lesiones severas.</p>
+                </div>
+                
+                <div class="trauma-card">
+                    <h3>Desastres Naturales</h3>
+                    <p>Terremotos, inundaciones, huracanes, incendios forestales u otros eventos naturales catastróficos.</p>
+                </div>
+                
+                <div class="trauma-card">
+                    <h3>Conflicto Armado</h3>
+                    <p>Experiencias de combate, terrorismo, violencia política o ser refugiado de guerra.</p>
+                </div>
+                
+                <div class="trauma-card">
+                    <h3>Pérdida Traumática</h3>
+                    <p>Muerte repentina o violenta de un ser querido, presenciar la muerte de otros.</p>
+                </div>
+                
+                <div class="trauma-card">
+                    <h3>Trauma Médico</h3>
+                    <p>Diagnóstico de enfermedad grave, procedimientos médicos invasivos, experiencias cercanas a la muerte.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>SÍNTOMAS DEL TEPT</h2>
+            <p>
+                Los síntomas del TEPT se agrupan en cuatro categorías principales:
+            </p>
+            
+            <div class="symptoms-categories">
+                <div class="symptom-category">
+                    <h3>REEXPERIMENTACIÓN</h3>
+                    <ul>
+                        <li>Recuerdos intrusivos recurrentes del trauma</li>
+                        <li>Pesadillas relacionadas con el evento</li>
+                        <li>Flashbacks (sentir que el evento está ocurriendo nuevamente)</li>
+                        <li>Angustia intensa ante recordatorios del trauma</li>
+                        <li>Reacciones físicas a señales relacionadas con el trauma</li>
+                    </ul>
+                </div>
+                
+                <div class="symptom-category">
+                    <h3>EVITACIÓN</h3>
+                    <ul>
+                        <li>Evitar pensamientos o sentimientos sobre el trauma</li>
+                        <li>Evitar lugares, personas o actividades que recuerden el evento</li>
+                        <li>Evitar hablar sobre lo que sucedió</li>
+                        <li>Evitar recordatorios externos del trauma</li>
+                    </ul>
+                </div>
+                
+                <div class="symptom-category">
+                    <h3>CAMBIOS NEGATIVOS</h3>
+                    <ul>
+                        <li>Incapacidad para recordar partes importantes del trauma</li>
+                        <li>Creencias negativas sobre uno mismo o el mundo</li>
+                        <li>Culparse a sí mismo o a otros injustamente</li>
+                        <li>Emociones negativas persistentes (miedo, horror, culpa)</li>
+                        <li>Pérdida de interés en actividades importantes</li>
+                        <li>Sentirse desconectado de otros</li>
+                        <li>Incapacidad para experimentar emociones positivas</li>
+                    </ul>
+                </div>
+                
+                <div class="symptom-category">
+                    <h3>HIPERACTIVACIÓN</h3>
+                    <ul>
+                        <li>Irritabilidad o explosiones de ira</li>
+                        <li>Comportamiento imprudente o autodestructivo</li>
+                        <li>Hipervigilancia constante</li>
+                        <li>Respuesta de sobresalto exagerada</li>
+                        <li>Problemas de concentración</li>
+                        <li>Dificultades para dormir</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="specialist-section" id="especialista">
+            <h2>CÓMO CONSULTAR CON UN ESPECIALISTA</h2>
+            <div class="divider"></div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>RECONOCE EL TRAUMA</h3>
+                    <p>Acepta que has experimentado un evento traumático y que los síntomas que experimentas son una respuesta válida. No hay vergüenza en buscar ayuda.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>BUSCA ESPECIALISTA EN TRAUMA</h3>
+                    <p>El TEPT requiere tratamiento especializado. Busca un psicólogo o psiquiatra con experiencia específica en trauma y TEPT.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>CONTACTA TU EPS</h3>
+                    <p>Solicita atención en salud mental especificando que has experimentado un trauma. Tienes derecho a recibir tratamiento especializado.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3>PREPÁRATE EMOCIONALMENTE</h3>
+                    <p>Hablar del trauma puede ser difícil. Está bien si no puedes contarlo todo en la primera sesión. Avanza a tu propio ritmo.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">05</div>
+                    <h3>PREGUNTA SOBRE TERAPIAS</h3>
+                    <p>Pregunta sobre terapias específicas para trauma como EMDR, Terapia de Procesamiento Cognitivo o Terapia de Exposición Prolongada.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">06</div>
+                    <h3>CONSTRUYE RED DE APOYO</h3>
+                    <p>Además del tratamiento profesional, conecta con personas de confianza que puedan apoyarte durante el proceso de recuperación.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-section" id="musica">
+            <h2>MÚSICA PARA LA SANACIÓN</h2>
+            <div class="divider"></div>
+            <p class="music-intro">
+                La música puede ser una herramienta terapéutica para ayudar a procesar emociones difíciles y crear 
+                una sensación de seguridad. Estas canciones han sido seleccionadas por sus cualidades reconfortantes 
+                y su capacidad para ayudar en momentos de angustia o cuando necesitas conexión emocional. Úsalas como 
+                parte de tu proceso de sanación, siempre a tu propio ritmo.
+            </p>
+            
+            <div class="songs-grid">
+                <div class="song-card">
+                    <h3>Fix You</h3>
+                    <p class="song-artist">Coldplay</p>
+                    <p class="song-description">Una canción profundamente reconfortante sobre sanar y encontrar apoyo. Puede ayudar a procesar emociones de pérdida y dolor.</p>
+                    <a href="https://www.youtube.com/watch?v=k4V3Mo61fJM" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>The Sound of Silence</h3>
+                    <p class="song-artist">Simon & Garfunkel</p>
+                    <p class="song-description">Melodía contemplativa que valida los sentimientos de soledad y desconexión que a menudo acompañan al trauma.</p>
+                    <a href="https://www.youtube.com/watch?v=4fWyzwo1xg0" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Breathe Me</h3>
+                    <p class="song-artist">Sia</p>
+                    <p class="song-description">Expresión vulnerable de dolor emocional que puede ayudar a validar sentimientos difíciles de expresar con palabras.</p>
+                    <a href="https://www.youtube.com/watch?v=SFGvmrJ5rjM" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Hurt</h3>
+                    <p class="song-artist">Johnny Cash</p>
+                    <p class="song-description">Poderosa expresión de dolor y redención. Puede ayudar a confrontar emociones difíciles de manera segura.</p>
+                    <a href="https://www.youtube.com/watch?v=8AHCfZTRGiI" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Hallelujah</h3>
+                    <p class="song-artist">Jeff Buckley</p>
+                    <p class="song-description">Versión emotiva que transmite tanto dolor como esperanza, útil para procesar emociones complejas del trauma.</p>
+                    <a href="https://www.youtube.com/watch?v=y8AWFf7EAc4" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Mad World</h3>
+                    <p class="song-artist">Gary Jules</p>
+                    <p class="song-description">Validación de sentimientos de desconexión y alienación que pueden seguir al trauma.</p>
+                    <a href="https://www.youtube.com/watch?v=4N3N1MlvVc4" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>The Scientist</h3>
+                    <p class="song-artist">Coldplay</p>
+                    <p class="song-description">Sobre el deseo de retroceder en el tiempo, ayuda a procesar el anhelo por la vida antes del trauma.</p>
+                    <a href="https://www.youtube.com/watch?v=RB-RcX5DS5A" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Skinny Love</h3>
+                    <p class="song-artist">Bon Iver</p>
+                    <p class="song-description">Expresión cruda de vulnerabilidad que puede resonar con la fragilidad emocional post-trauma.</p>
+                    <a href="https://www.youtube.com/watch?v=ssdgFoHLwnk" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+                
+                <div class="song-card">
+                    <h3>Unsteady</h3>
+                    <p class="song-artist">X Ambassadors</p>
+                    <p class="song-description">Sobre necesitar apoyo cuando te sientes frágil. Reconoce que está bien no estar bien.</p>
+                    <a href="https://www.youtube.com/watch?v=V0lw3qylVfY" target="_blank" class="song-link">ESCUCHAR</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-banner">
+            <h3>¿NECESITAS AYUDA INMEDIATA?</h3>
+            <p>Si estás experimentando pensamientos de hacerte daño o una crisis relacionada con tu trauma.</p>
+            <p>Contacta inmediatamente:</p>
+            <div class="help-number">LÍNEA 123</div>
+            <p style="margin-top: 20px;">O acude a la sala de emergencias más cercana</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="divider"></div>
+        © 2025 PORTAL DE SALUD MENTAL | TU BIENESTAR ES NUESTRA PRIORIDAD
+    </footer>
+
+    <script>
+        // Generar estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Efecto parallax
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 15;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 15;
+        });
+
+        function animate() {
+            currentX += (mouseX - currentX) * 0.05;
+            currentY += (mouseY - currentY) * 0.05;
+
+            const cards = document.querySelectorAll('.song-card, .step, .trauma-card, .symptom-category');
+            cards.forEach((card, index) => {
+                const depth = (index % 3 + 1) * 0.3;
+                card.style.transform = `translate(${currentX * depth}px, ${currentY * depth}px)`;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Animación de entrada para elementos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 80);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.song-card, .step, .info-box, .trauma-card, .symptom-category').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(element);
+        });
+
+        // Efecto de resplandor que sigue al cursor
+        const heroGlow = document.querySelector('.hero-glow');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth * 100;
+            const y = e.clientY / window.innerHeight * 100;
+            heroGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(51, 65, 85, 0.25) 0%, transparent 50%)`;
+        });
+
+        // Scroll suave para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
